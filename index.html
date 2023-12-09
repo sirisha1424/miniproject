@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>Chatbot</h1>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Chat messages will be added here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById("chat-messages");
+        const userInput = document.getElementById("user-input");
+        const sendButton = document.getElementById("send-button");
+
+        // Function to add a user message to the chat interface
+        function addUserMessage(message) {
+            const userMessage = document.createElement("div");
+            userMessage.className = "user-message";
+            userMessage.textContent = message;
+            chatMessages.appendChild(userMessage);
+        }
+
+        // Function to add a chatbot message to the chat interface
+        function addChatbotMessage(message) {
+            const chatbotMessage = document.createElement("div");
+            chatbotMessage.className = "chatbot-message";
+            chatbotMessage.textContent = message;
+            chatMessages.appendChild(chatbotMessage);
+        }
+
+        // Function to handle user input and chatbot responses
+        function handleUserInput() {
+            const userMessage = userInput.value;
+            if (userMessage.trim() === "") return;
+
+            addUserMessage(userMessage);
+            userInput.value = "";
+
+            const chatbotMessage = getBotResponse(userMessage);
+            addChatbotMessage(chatbotMessage);
+
+            // Scroll to the latest message
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to provide information based on user input
+  function getBotResponse(userInput) {
+  const lowercaseInput = userInput.toLowerCase();
+
+  if (lowercaseInput.includes('hello') || lowercaseInput.includes('hi')) {
+    return 'Hello! How can I assist you today?';
+  } else if (lowercaseInput.includes('how are you')) {
+    return 'I am functioning well, thank you for asking!';
+  } else if (lowercaseInput.includes('your name')) {
+    return 'I am a chatbot. You can call me BotMaster.';
+  } else if (lowercaseInput.includes('weather')) {
+    return "I'm afraid I don't have real-time weather updates.";
+  } else if (lowercaseInput.includes('joke')) {
+    return 'Why did the computer go to therapy? It had too many bytes of emotional baggage!';
+  } else if (lowercaseInput.includes('thank you') || lowercaseInput.includes('thanks')) {
+    return 'You\'re welcome! If you have more questions, feel free to ask.';
+  } else if (lowercaseInput.includes('bye') || lowercaseInput.includes('goodbye')) {
+    return 'Goodbye! Take care and feel free to return anytime.';
+  } else if (lowercaseInput.includes('tell me a story')) {
+    return 'Once upon a time, in a digital kingdom far, far away...';
+  } else if (lowercaseInput.includes('who created you') || lowercaseInput.includes('who made you')) {
+    return 'I was crafted by a team of skilled developers.';
+  } else if (lowercaseInput.includes('what is the meaning of life')) {
+    return 'The meaning of life is a profound question. Some say it\'s about finding purpose and happiness.';
+  } else if (lowercaseInput.includes('favorite color')) {
+    return 'I don\'t have a favorite color, but I appreciate the beauty of all colors!';
+  } else if (lowercaseInput.includes('how do you do')) {
+    return 'I am doing well, thank you for asking! How about you?';
+  } else if (lowercaseInput.includes('can you help me')) {
+    return 'Absolutely! I am here to assist you. What do you need help with?';
+  } else if (lowercaseInput.includes('what do you do')) {
+    return 'I am here to chat with you and provide information on various topics.';
+  } else if (lowercaseInput.includes('where are you')) {
+    return 'I exist in the digital realm, accessible from anywhere!';
+  } else if (lowercaseInput.includes('are you a human')) {
+    return 'No, I am not a human. I am an artificial intelligence designed to interact with users.';
+  } else if (lowercaseInput.includes('favorite food')) {
+    return 'I don\'t eat, but I hear pizza and sushi are popular choices!';
+  } else if (lowercaseInput.includes('what time is it')) {
+    const currentTime = new Date().toLocaleTimeString();
+    return `The current time is ${currentTime}.`;
+  } else if (lowercaseInput.includes('your hobbies')) {
+    return 'I enjoy processing information and engaging in conversations. How about you?';
+  } else if (lowercaseInput.includes('favorite book')) {
+    return 'I don\'t have personal preferences, but I can recommend many great books!';
+  } else if (lowercaseInput.includes('are you smart')) {
+    return 'I am designed to provide information and assist with various tasks, so you could say I am knowledgeable!';
+  } else if (lowercaseInput.includes('where do you live')) {
+    return 'I exist in the digital space, so I don\'t have a physical location.';
+  } else if (lowercaseInput.includes("music")) {
+    return "What type of music do you like? I can recommend some songs.";
+  } else if (lowercaseInput.includes("movie")) {
+    return "Do you have a favorite movie genre?";
+  } else {
+    return "I'm here to provide information. Please ask about a specific topic, and I'll do my best to assist you.";
+  }
+}
+
+
+        // Event listener for sending a message
+        sendButton.addEventListener("click", handleUserInput);
+
+        // Event listener for pressing Enter key
+        userInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                handleUserInput();
+            }
+        });
+    </script>
+</body>
+</html>
